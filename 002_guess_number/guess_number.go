@@ -3,11 +3,10 @@ package main
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	
 
 
 	var win int = 0
@@ -23,6 +22,7 @@ func main() {
 	fmt.Println("Push Ctrl + C to stop game")
 
 	for {
+		try += 1
 		var userAnswer int
 		var randomNumber int = rand.Intn(max - min + 1) + min
 
@@ -33,25 +33,23 @@ func main() {
 
 		if err != nil{
 			fmt.Println("Please, type a valid number")
-			fmt.Scanln()
-			try += 1
+			fmt.Scanln()			
 			continue
 		}
 
 		if userAnswer == randomNumber{
-			win +=1
-			try += 1
+			win +=1			
 			fmt.Printf("Great! %d was guessed\n", randomNumber)			
 		} else if(userAnswer < min || userAnswer > max) {
 			fmt.Printf("Please, type number between %d and %d\n", min, max)
-			try += 1
+			
 		} else {
-			lose += 1 
-			try += 1
+			lose += 1 			
 			fmt.Printf("You lose! %d was guessed\n", randomNumber)			
 		}
 
-		fmt.Printf("Score: Try %d | Wins %d | Loses: %d\n", try, win, lose)
+		fmt.Printf("Stats: Try %d | Wins %d | Loses: %d\n", try, win, lose)
+		fmt.Print("\n")
 				
 	}
 
