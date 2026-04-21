@@ -14,27 +14,33 @@ var httpClient = &http.Client{
 		Timeout: 5 * time.Second,
 }
 
-func handleErrors(err error) (int, error){
-	if err != nil{
+
+
+func checkURL(url string) (int, error){
+	if!strings.HasPrefix(url, "https://") && !strings.HasPrefix(url, "http://"){
+		url = "https://" + url	
+	}
+
+
+	response, err := httpClient.Get(url)
+	if err != nil {
 		return 0, err
 	}
-}
-
-func checkURL(url string) int {
-	response, err := httpClient.Get(url)
-	handleErrors(err)
 	defer response.Body.Close()
-	return response.StatusCode
+	return response.StatusCode, nil
 }
 
 func main(){
 	fmt.Println("Starting programm...")
 	fmt.Println("Reading URLs...")
-
 	
 	data, err := os.Open("urls.txt")	
 
-	handleErrors(err)
+	if(err != nil){
+		fmt.Printf("Error: file not found %v\n", err)
+		return 
+	}
+
 	defer data.Close()
 
 	var urlsList []string
@@ -55,8 +61,13 @@ func main(){
 	}
 
 	for _, url := range urlsList {
-		responseCode := checkURL((url))
-		fmt.Printf("Response code for %s is %d\n", url, responseCode)
+		responseCode, err := checkURL((url))
+		if(err != nil){
+			fmt.Printf("Failed to check %v\n", err)
+		} else {
+			fmt.Printf("Response code for %s is %d\n", url, responseCode)
+		}
+		
 		
 	}
 
