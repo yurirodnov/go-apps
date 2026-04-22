@@ -1,3 +1,5 @@
+// Scans list of URLs from file and checks HTTP responses
+
 package main
 
 import (

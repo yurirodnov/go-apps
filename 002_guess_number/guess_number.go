@@ -1,3 +1,5 @@
+// CLI guessing numbers game
+
 package main
 
 import (
@@ -44,7 +46,7 @@ func main() {
 			fmt.Printf("You lose! %d was guessed\n", randomNumber)			
 		}
 
-		fmt.Printf("Stats: Try %d | Wins %d | Loses: %d\n", try, win, lose)
+		fmt.Printf("Stats: Try %d | Wins %d | Loses %d\n", try, win, lose)
 		fmt.Print("\n")
 				
 	}
