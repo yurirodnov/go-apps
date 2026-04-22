@@ -29,7 +29,7 @@ Interested in the code? Wanna run it locally?
 3.  **Compile from source:**
 
     ```bash
-    go build .
+    go build .\health_checker.go
     ```
 
 4.  **Run compiled program:**
