@@ -1,4 +1,4 @@
-// Shows information about your system
+// The program displays information about the system in which it was launched
 
 package main
 
