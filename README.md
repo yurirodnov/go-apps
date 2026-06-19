@@ -2,7 +2,7 @@
 
 Small Golang projects i make to explore this language.
 
-[![Go projects cover](./mascot.jpg)]
+![Go projects cover](./mascot.jpg)
 
 ## 🛠️ Local Development
 
