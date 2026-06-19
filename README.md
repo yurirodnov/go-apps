@@ -2,6 +2,8 @@
 
 Small Golang projects i make to explore this language.
 
+[![Go projects cover](./mascot.jpg)]
+
 ## 🛠️ Local Development
 
 Interested in the code? Wanna run it locally?
