@@ -113,6 +113,7 @@ func main() {
 	fmt.Printf("CPU utilaztion: %.2f%%\n", cpuUtillization[0])
 
 	fmt.Println("<----------------------------")
+	fmt.Print("\n")
 
 	// Disk info block
 	fmt.Println("Disk")
