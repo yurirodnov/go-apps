@@ -1,3 +1,7 @@
+// Renames files into unique name
+// Usage: rename_files.exe <folder path>
+// Example: rename_files.exe D:\Pics\Summer
+
 package main
 
 import (
