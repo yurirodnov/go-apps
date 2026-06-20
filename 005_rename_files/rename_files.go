@@ -33,7 +33,7 @@ func main() {
 
 	fileInfo, err := os.Stat(path);
 	if(err != nil){
-		fmt.Printf("%s is not a path", path);
+		fmt.Printf("%s is not a path", path)
 		return
 	}	
 
@@ -49,20 +49,31 @@ func main() {
 
 	fmt.Printf("Prcessing files in %s\n", path)
 
-	namesMap := make(map[string]string)
+	usedNames := make(map[string]bool)
 	
 	for _, file := range filesList {
-		fmt.Printf("Renaming file %s \n", file.Name())
-		
+		if !file.IsDir(){
+			continue
+		}
+
+		fmt.Printf("Renaming file %s \n", file.Name())		
 		
 		fileExt := filepath.Ext(file.Name())
-		newName := createRandomName();
-		oldPath := filepath.Join(path, file.Name())
-		newPath := filepath.Join(path, newName + fileExt)
 
-
-		namesMap[file.Name()] = newName
+		var newName string;
+		for{
+			candidate := createRandomName() + fileExt
+			
+			if !usedNames[candidate]{
+				newName = candidate
+				break
+			}
+		}
 		
+		oldPath := filepath.Join(path, file.Name())
+		newPath := filepath.Join(path, newName)
+
+		usedNames[newName] = true		
 
 		err := os.Rename(oldPath, newPath)
 
@@ -70,22 +81,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		fmt.Printf("Renamed: %s -> %s \n", file.Name(), newName + fileExt)
+		fmt.Printf("Renamed: %s -> %s \n", file.Name(), newName)
 		
-		// fmt.Println(oldPath)
-		// fmt.Println(newPath)
-		// fmt.Println("-----")
 	}
-
-
-	
-
-
-	
-
-	
-
-
-
-
 }
