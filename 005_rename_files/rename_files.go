@@ -6,20 +6,21 @@ import (
 	"math/rand"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var NEW_NAME_LENGTH = 20;
 var NEW_NAME_SYMBOLS_SET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 func createRandomName() string {
-		var newName string;		
+		var newName strings.Builder;		
 
 		for i := 0; i < NEW_NAME_LENGTH; i++ {
 			randIndex := rand.Intn(len(NEW_NAME_SYMBOLS_SET))
-			newName += string(NEW_NAME_SYMBOLS_SET[randIndex])
+			newName.WriteByte(NEW_NAME_SYMBOLS_SET[randIndex])
 		}
 
-		return newName
+		return newName.String()
 }
 
 func main() {	
