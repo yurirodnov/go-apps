@@ -47,12 +47,12 @@ func main() {
 		fmt.Printf("Error while reading %s", path)
 	}
 
-	fmt.Printf("Prcessing files in %s\n", path)
+	fmt.Printf("Processing files in %s\n", path)
 
 	usedNames := make(map[string]bool)
 	
 	for _, file := range filesList {
-		if !file.IsDir(){
+		if file.IsDir(){
 			continue
 		}
 
